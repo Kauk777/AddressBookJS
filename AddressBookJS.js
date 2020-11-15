@@ -35,5 +35,3 @@ class Contact {
 
 let contact1=new Contact('Syouz','Hixa','Bottom bell mountain','LA','California',201451,98441253,'soyuz@cere.xz');
 console.log(contact1);
-let c2= new Contact('Noah','Lorez');
-console.log(c2);
