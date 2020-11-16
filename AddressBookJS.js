@@ -84,6 +84,11 @@ try {
     contactEdit(enterName);
     console.log('***************************************************************************************');
     contactBook.forEach(contact => console.log(contact.toString()));
+    console.log('***************************************************************************************');
+    let deleteName=prompt('Enter name to delete the contact: ');
+    deleteContact(deleteName);
+    contactBook.forEach(contact => console.log(contact.toString()));
+    
 } catch(e) {
     console.error(e);
 }
@@ -94,5 +99,10 @@ function contactEdit(name) {
                                           contact.address=editAddress;
                                           let editZip=prompt('Enter new Zip Code: ');
                                           contact.zip=editZip; });                             
+}
+
+function deleteContact(name) {
+    let pos=contactBook.findIndex(contactName => contactName.firstName.concat(' ',contactName.lastName).localeCompare(name)==0);
+    contactBook.splice(pos,1);
 }
 
