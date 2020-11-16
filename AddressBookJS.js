@@ -106,6 +106,8 @@ try {
     countByCity();
     console.log('*******Count by State********');
     countByState();
+    console.log('*****Sorted by Person Name**********');
+    sortByName();
   
 } catch(e) {
     console.error(e);
@@ -176,5 +178,20 @@ function countByState() {
         }
         console.log(uniqueStates[i]+': '+count);
     }
+}
+
+function sortByName() {
+    contactBook.sort(function(a,b) {
+        let name1=a.firstName.concat(' ',a.lastName).toUpperCase();
+        let name2=b.firstName.concat(' ',b.lastName).toUpperCase();
+        if(name1<name2)
+        return -1;
+        if(name1>name2)
+        return 1;
+
+        return 0;
+    });
+
+    contactBook.forEach(val => console.log(val.toString()));
 }
 
