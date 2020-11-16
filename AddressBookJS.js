@@ -108,7 +108,7 @@ try {
     countByState();
     console.log('*****Sorted by Person Name**********');
     sortByName();
-    
+  
 } catch(e) {
     console.error(e);
 }
@@ -118,7 +118,7 @@ function contactEdit(name) {
                     .forEach(contact => { let editAddress=prompt('Enter new Address to Edit ContactBook: ');
                                           contact.address=editAddress;
                                           let editZip=prompt('Enter new Zip Code: ');
-                                          contact.zip=editZip; });                             
+                                          contact.zip=editZip; });                                                         
 }
 
 function deleteContact(name) {
