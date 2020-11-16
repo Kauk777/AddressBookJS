@@ -108,6 +108,8 @@ try {
     countByState();
     console.log('*****Sorted by Person Name**********');
     sortByName();
+    console.log('*****Sorted by City Name**********');
+    sortByCity();
   
 } catch(e) {
     console.error(e);
@@ -187,6 +189,21 @@ function sortByName() {
         if(name1<name2)
         return -1;
         if(name1>name2)
+        return 1;
+
+        return 0;
+    });
+
+    contactBook.forEach(val => console.log(val.toString()));
+}
+
+function sortByCity() {
+    contactBook.sort(function(a,b) {
+        let city1=a.city.toUpperCase();
+        let city2=b.city.toUpperCase();
+        if(city1<city2)
+        return -1;
+        if(city1>city2)
         return 1;
 
         return 0;
