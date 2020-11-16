@@ -95,6 +95,9 @@ try {
     console.log('***************************************************************************************');
     console.log('Number of Contacts: '+countContact());
     console.log('***************************************************************************************');
+    let searchByCity=prompt('Enter city in in which you want to search person: ');
+    let searchName=prompt('Enter person name to get contact');
+    displayContactPerson(searchByCity,searchName);
     let cityName=prompt('Enter city to display person names in that city: ');
     displayByCity(cityName);
     let stateName=prompt('Enter state name to display person names in that state: ');
@@ -126,6 +129,12 @@ function checkDuplicate(contactArr,name) {
     return contactArr.filter((obj,pos,arr) => {
         return arr.map(mapObj => mapObj.firstName).indexOf(obj.firstName) === pos;
     });
+}
+
+function displayContactPerson(cityName,personName) {
+    contactBook.filter(value => value.city.localeCompare(cityName)==0)
+                .forEach(contact => { if(contact.firstName.concat(' ',contact.lastName).localeCompare(personName)==0)
+                                        console.log(contact.toString()); });
 }
 
 function displayByCity(cityName) {
