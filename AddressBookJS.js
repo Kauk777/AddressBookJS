@@ -106,9 +106,9 @@ try {
     countByCity();
     console.log('*******Count by State********');
     countByState();
-    console.log('*****Sorted by Person Name**********');
+    console.log('********Sorted by Person Name**********');
     sortByName();
-    console.log('*****Sorted by City Name**********');
+    console.log('********Sorted by City Name**********');
     sortByCity();
   
 } catch(e) {
