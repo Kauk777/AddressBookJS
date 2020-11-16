@@ -78,6 +78,7 @@ let contactBook;
 try {
     contactBook = [ new Contact('Syouz','Hixa','Bottom bell mountain','Los Angels','California',201451,9844125306,'soyuz@cere.xz'),
                     new Contact('Markie','Jordon','Mastai 101','Las Vegas','Nevada','400088',8801341806,'marlie89@hotmail.com'),
+                    new Contact('Noah','Parker','Blue Hill 225','Pasedena','California','205588',9871555806,'noah777@gamil.com'),
                     new Contact('Noah','Parker','Blue Hill 225','Pasedena','California','205588',9871555806,'noah777@gamil.com')];
     contactBook.forEach(contact => console.log(contact.toString()));
     let enterName=prompt('Enter Name to edit the Contact: ');
@@ -90,6 +91,10 @@ try {
     contactBook.forEach(contact => console.log(contact.toString()));
     console.log('***************************************************************************************');
     console.log('Number of Contacts: '+countContact());
+    console.log('***************************************************************************************');
+    console.log('Removing Duplicates Contacts');
+    contactBook=checkDuplicate(contactBook,contactBook.firstName);
+    contactBook.forEach(contact => console.log(contact.toString()));
     
 } catch(e) {
     console.error(e);
@@ -111,5 +116,11 @@ function deleteContact(name) {
 
 function countContact() {
     return contactBook.reduce((accumulator,current) => accumulator.concat(current), []).length;   
+}
+
+function checkDuplicate(contactArr,name) {
+    return contactArr.filter((obj,pos,arr) => {
+        return arr.map(mapObj => mapObj.firstName).indexOf(obj.firstName) === pos;
+    });
 }
 
