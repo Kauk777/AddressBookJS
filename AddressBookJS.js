@@ -3,6 +3,7 @@ var nameReg=RegExp('^[A-Z]{1}[a-z]{3,}$');
 var locReg=RegExp('^[A-Za-z 0-9]{4,}$');
 var phoneReg=RegExp('^[6-9]{1}[0-9]{9}$');
 var emailReg=RegExp('^[0-9a-zA-Z_+-]+(\\.?[0-9a-zA-Z_+-]*)[^\\.]@[0-9a-zA-Z]+(\\.[0-9a-zA-Z]{2,})(\\.?[a-zA-Z]{2,})?$');
+const prompt = require('prompt-sync')();
 class Contact {
     
     // constructor
@@ -73,12 +74,23 @@ class Contact {
     }
 }
 
+let contactBook;
 try {
-    let contactBook = [ new Contact('Syouz','Hixa','Bottom bell mountain','Los Angels','California',201451,9844125306,'soyuz@cere.xz'),
-                        new Contact('Markie','Jordon','Mastai 101','Las Vegas','Nevada','400088',8801341806,'marlie89@hotmail.com'),
-                        new Contact('Noah','Parker','Blue Hill 225','Pasedena','California','205588',9871555806,'noah777@gamil.com')];
+    contactBook = [ new Contact('Syouz','Hixa','Bottom bell mountain','Los Angels','California',201451,9844125306,'soyuz@cere.xz'),
+                    new Contact('Markie','Jordon','Mastai 101','Las Vegas','Nevada','400088',8801341806,'marlie89@hotmail.com'),
+                    new Contact('Noah','Parker','Blue Hill 225','Pasedena','California','205588',9871555806,'noah777@gamil.com')];
+    contactBook.forEach(contact => console.log(contact.toString()));
+    let enterName=prompt('Enter Name to edit the Contact:');
+    contactEdit(enterName);
+    console.log('***************************************************************************************');
     contactBook.forEach(contact => console.log(contact.toString()));
 } catch(e) {
     console.error(e);
+}
+
+function contactEdit(name) {
+    let editContact=contactBook.filter(contactName => contactName.firstName.concat(' ',contactName.lastName).localeCompare(name)==0)
+                    .forEach(contact => { contact.address='Valley Seep 025';
+                                          contact.zip='206599'; });                             
 }
 
