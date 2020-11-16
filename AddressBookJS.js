@@ -81,6 +81,9 @@ try {
                     new Contact('Noah','Parker','Blue Hill 225','Pasedena','California','205588',9871555806,'noah777@gamil.com'),
                     new Contact('Noah','Parker','Blue Hill 225','Pasedena','California','205588',9871555806,'noah777@gamil.com')];
     contactBook.forEach(contact => console.log(contact.toString()));
+    console.log('Removing Duplicates Contacts');
+    contactBook=checkDuplicate(contactBook,contactBook.firstName);
+    contactBook.forEach(contact => console.log(contact.toString()));
     let enterName=prompt('Enter Name to edit the Contact: ');
     contactEdit(enterName);
     console.log('***************************************************************************************');
@@ -92,10 +95,11 @@ try {
     console.log('***************************************************************************************');
     console.log('Number of Contacts: '+countContact());
     console.log('***************************************************************************************');
-    console.log('Removing Duplicates Contacts');
-    contactBook=checkDuplicate(contactBook,contactBook.firstName);
-    contactBook.forEach(contact => console.log(contact.toString()));
-    
+    let cityName=prompt('Enter city to display person names in that city: ');
+    displayByCity(cityName);
+    let stateName=prompt('Enter state name to display person names in that state: ');
+    displayByState(stateName);
+ 
 } catch(e) {
     console.error(e);
 }
@@ -122,5 +126,12 @@ function checkDuplicate(contactArr,name) {
     return contactArr.filter((obj,pos,arr) => {
         return arr.map(mapObj => mapObj.firstName).indexOf(obj.firstName) === pos;
     });
+}
+
+function displayByCity(cityName) {
+    contactBook.filter(value => value.city.localeCompare(cityName)==0).forEach(contact => console.log(contact.firstName+' '+contact.lastName) );
+}
+function displayByState(stateName) {
+    contactBook.filter(value => value.state.localeCompare(stateName)==0).forEach(contact => console.log(contact.firstName+' '+contact.lastName) );
 }
 
