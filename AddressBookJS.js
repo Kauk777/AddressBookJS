@@ -88,6 +88,8 @@ try {
     let deleteName=prompt('Enter name to delete the contact: ');
     deleteContact(deleteName);
     contactBook.forEach(contact => console.log(contact.toString()));
+    console.log('***************************************************************************************');
+    console.log('Number of Contacts: '+countContact());
     
 } catch(e) {
     console.error(e);
@@ -103,6 +105,11 @@ function contactEdit(name) {
 
 function deleteContact(name) {
     let pos=contactBook.findIndex(contactName => contactName.firstName.concat(' ',contactName.lastName).localeCompare(name)==0);
+    if(pos>0)
     contactBook.splice(pos,1);
+}
+
+function countContact() {
+    return contactBook.reduce((accumulator,current) => accumulator.concat(current), []).length;   
 }
 
