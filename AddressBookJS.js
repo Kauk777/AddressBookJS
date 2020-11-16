@@ -96,13 +96,17 @@ try {
     console.log('Number of Contacts: '+countContact());
     console.log('***************************************************************************************');
     let searchByCity=prompt('Enter city in in which you want to search person: ');
-    let searchName=prompt('Enter person name to get contact');
+    let searchName=prompt('Enter person name to get contact: ');
     displayContactPerson(searchByCity,searchName);
     let cityName=prompt('Enter city to display person names in that city: ');
     displayByCity(cityName);
     let stateName=prompt('Enter state name to display person names in that state: ');
     displayByState(stateName);
- 
+    console.log('******Count By City*******');
+    countByCity();
+    console.log('*******Count by State********');
+    countByState();
+  
 } catch(e) {
     console.error(e);
 }
@@ -142,5 +146,35 @@ function displayByCity(cityName) {
 }
 function displayByState(stateName) {
     contactBook.filter(value => value.state.localeCompare(stateName)==0).forEach(contact => console.log(contact.firstName+' '+contact.lastName) );
+}
+
+function countByCity() {
+    let cities=contactBook.map(val => val.city);
+    //console.log(cities);
+    let uniqueCities=[...new Set(cities)];
+    //console.log(uniqueCities);
+    let count;
+    for(let i in uniqueCities) {
+        count=0
+        for(let j in cities)
+        if(uniqueCities[i]==cities[j])
+        count++
+        console.log(uniqueCities[i]+': '+count);
+    }
+}
+function countByState() {
+    let states=contactBook.map(val => val.state);
+    //console.log(states);
+    let uniqueStates=[...new Set(states)];
+    //console.log(uniqueStates);
+    let count;
+    for(let i in uniqueStates) {
+        count=0
+        for(let j in states) {
+        if(uniqueStates[i]==states[j])
+        count++;
+        }
+        console.log(uniqueStates[i]+': '+count);
+    }
 }
 
