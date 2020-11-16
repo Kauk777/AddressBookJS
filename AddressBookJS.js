@@ -78,7 +78,11 @@ let contactBook;
 try {
     contactBook = [ new Contact('Syouz','Hixa','Bottom bell mountain','Los Angels','California',201451,9844125306,'soyuz@cere.xz'),
                     new Contact('Markie','Jordon','Mastai 101','Las Vegas','Nevada','400088',8801341806,'marlie89@hotmail.com'),
+                    new Contact('Noah','Parker','Blue Hill 225','Pasedena','California','205588',9871555806,'noah777@gamil.com'),
                     new Contact('Noah','Parker','Blue Hill 225','Pasedena','California','205588',9871555806,'noah777@gamil.com')];
+    contactBook.forEach(contact => console.log(contact.toString()));
+    console.log('Removing Duplicates Contacts');
+    contactBook=checkDuplicate(contactBook,contactBook.firstName);
     contactBook.forEach(contact => console.log(contact.toString()));
     let enterName=prompt('Enter Name to edit the Contact: ');
     contactEdit(enterName);
@@ -90,6 +94,11 @@ try {
     contactBook.forEach(contact => console.log(contact.toString()));
     console.log('***************************************************************************************');
     console.log('Number of Contacts: '+countContact());
+    console.log('***************************************************************************************');
+    let cityName=prompt('Enter city to display person names in that city: ');
+    displayByCity(cityName);
+    let stateName=prompt('Enter state name to display person names in that state: ');
+    displayByState(stateName);
     
 } catch(e) {
     console.error(e);
@@ -111,5 +120,18 @@ function deleteContact(name) {
 
 function countContact() {
     return contactBook.reduce((accumulator,current) => accumulator.concat(current), []).length;   
+}
+
+function checkDuplicate(contactArr,name) {
+    return contactArr.filter((obj,pos,arr) => {
+        return arr.map(mapObj => mapObj.firstName).indexOf(obj.firstName) === pos;
+    });
+}
+
+function displayByCity(cityName) {
+    contactBook.filter(value => value.city.localeCompare(cityName)==0).forEach(contact => console.log(contact.firstName+' '+contact.lastName) );
+}
+function displayByState(stateName) {
+    contactBook.filter(value => value.state.localeCompare(stateName)==0).forEach(contact => console.log(contact.firstName+' '+contact.lastName) );
 }
 
